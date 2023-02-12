@@ -70,10 +70,9 @@
         <div id="content">
 
 
-
             <!-- Begin Page Content -->
             <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+            <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
             <div class="container-fluid">
 
                 <!-- Page Heading -->
@@ -84,17 +83,18 @@
                 </div>
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Dodaj użytkownika</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Edycja użytkownika</h6>
                     </div>
                     <div class="card-body">
-                        <form action="/user/add" method="post">
+                        <form method="post">
+                            <input type="hidden" name="id" value="${user.id}"/>
                             <div class="form-group">
                                 <label for="userName">Nazwa</label>
-                                <input name="userName" type="text" class="form-control" id="userName" placeholder="Nazwa użytkownika">
+                                <input value="${user.userName}" name="userName" type="text" class="form-control" id="userName" placeholder="Nazwa użytkownika">
                             </div>
                             <div class="form-group">
                                 <label for="userEmail">Email</label>
-                                <input name="userEmail" type="email" class="form-control" id="userEmail" placeholder="Email użytkownika">
+                                <input value="${user.email}" name="userEmail" type="email" class="form-control" id="userEmail" placeholder="Email użytkownika">
                             </div>
                             <div class="form-group">
                                 <label for="userPassword">Hasło</label>
@@ -133,7 +133,6 @@
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
-
 
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>

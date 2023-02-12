@@ -14,6 +14,9 @@ public class UserAdd extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String characterEncoding = "UTF-8";
+        request.setCharacterEncoding(characterEncoding);
+        response.setCharacterEncoding(characterEncoding);
 
             User user = new User();
             user.setUserName(request.getParameter("userName"));
@@ -22,6 +25,7 @@ public class UserAdd extends HttpServlet {
             UserDao userDao = new UserDao();
             userDao.create(user);
             response.sendRedirect("/userslist.jsp");
+
 
         }
 

@@ -1,5 +1,7 @@
 package pl.coderslab;
 
+import pl.coderslab.utils.DbUtil;
+
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -8,7 +10,7 @@ public class TestConnection {
 
     public static void main(String[] args) {
 
-        try (Connection connect = DbUtil.connectUsers()) {
+        try (Connection connect = DbUtil.getConnection()) {
 
             System.out.println("połączony");
 

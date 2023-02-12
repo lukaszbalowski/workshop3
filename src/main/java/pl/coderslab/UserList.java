@@ -1,7 +1,7 @@
 package pl.coderslab;
 
 import java.io.IOException;
-
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,10 +13,16 @@ public class UserList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        UserDao userDao = new UserDao();
-        request.setAttribute("users", userDao.findAll());
+        String characterEncoding = "UTF-8";
+        request.setCharacterEncoding(characterEncoding);
+        response.setCharacterEncoding(characterEncoding);
 
-        getServletContext().getRequestDispatcher("/userslist.jsp").forward(request, response);
+
+        UserDao userDao = new UserDao();
+        User[] users = userDao.findAll();
+        request.setAttribute("users", users);
+        getServletContext().getRequestDispatcher("/userslist.jsp")
+                .forward(request, response);
     }
 
 
