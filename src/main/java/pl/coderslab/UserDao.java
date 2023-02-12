@@ -8,7 +8,7 @@ import java.util.Arrays;
 public class UserDao {
 
     private static final String CREATE_USER_QUERY = """
-            INSERT INTO users (email, username, password)
+            INSERT INTO users (username, email, password)
             VALUES (?, ?, ?)
             """;
     private static final String READ_USER_QUERY = """
@@ -71,7 +71,7 @@ public class UserDao {
             statement.setInt(1, userId);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                User user = new User();
+                User user = new User(resultSet.getInt("id"), resultSet.getString("username"), resultSet.getString("email"), resultSet.getString("password"));
                 user.setId(resultSet.getInt("id"));
                 user.setUserName(resultSet.getString("username"));
                 user.setEmail(resultSet.getString("email"));
@@ -117,7 +117,7 @@ public class UserDao {
             PreparedStatement statement = conn.prepareStatement(FIND_ALL_QUERY);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                User user = new User();
+                User user = new User(resultSet.getInt("id"), resultSet.getString("username"), resultSet.getString("email"), resultSet.getString("password"));
                 user.setId(resultSet.getInt(1));
                 user.setEmail(resultSet.getString(2));
                 user.setUserName(resultSet.getString(3));
